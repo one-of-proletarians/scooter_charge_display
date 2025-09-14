@@ -20,21 +20,6 @@ static const float AKK_MIN = 50.0;
 static const float AKK_MAX = 66.8;
 static const float DIVISOR_COEFF = 2.0;
 
-inline int calculate_percent(float min, float max, float current)
-{
-    if (min == max)
-        return 100;
-
-    float percentage = ((current - min) / (max - min)) * 100.0f;
-
-    if (percentage < 0.0f)
-        percentage = 0.0f;
-    else if (percentage > 100.0f)
-        percentage = 100.0f;
-
-    return (int)(percentage + 0.5f);
-}
-
 static void main_task(void *p)
 {
     lvgl_port_lock();
@@ -71,7 +56,7 @@ static void main_task(void *p)
     for (;;)
     {
         voltage = ina_get_voltage() * DIVISOR_COEFF;
-        percent_cur = calculate_percent(AKK_MIN, AKK_MAX, voltage);
+        percent_cur = (uint32_t)(((current - AKK_MIN) / (AKK_MAX - AKK_MIN)) * 100.0f + 0.5f);
 
         if (percent_old != percent_cur)
         {
