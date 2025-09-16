@@ -19,7 +19,7 @@
 
 #define TICK_TASK_STACK_SIZE (2048)
 #define HANDLER_TASK_STACK_SIZE (2 * 2048)
-#define BUFF_HEIGHT 120
+#define BUFF_HEIGHT 80
 
 static SemaphoreHandle_t lvgl_mux;
 /**********************
