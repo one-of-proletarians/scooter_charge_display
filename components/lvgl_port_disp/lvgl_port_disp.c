@@ -94,7 +94,6 @@ void lv_port_disp_init(void)
     LV_ATTRIBUTE_MEM_ALIGN
     static uint8_t buf_2_2[MY_DISP_HOR_RES * BUFF_HEIGHT * BYTE_PER_PIXEL];
     lv_display_set_buffers(disp, buf_2_1, buf_2_2, sizeof(buf_2_1), LV_DISPLAY_RENDER_MODE_PARTIAL);
-    lv_display_set_color_format(disp, LV_COLOR_FORMAT_RGB565_SWAPPED);
 }
 
 /**********************
@@ -161,6 +160,7 @@ static void disp_flush(lv_display_t *disp_drv, const lv_area_t *area, uint8_t *p
 {
     if (disp_flush_enabled)
     {
+        lv_draw_sw_rgb565_swap(px_map, lv_area_get_size(area));
         gc9a01_draw(area, px_map);
     }
 
