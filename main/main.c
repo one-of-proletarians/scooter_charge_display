@@ -56,7 +56,7 @@ static void main_task(void *p)
     for (;;)
     {
         voltage = ina_get_voltage() * DIVISOR_COEFF;
-        percent_cur = (uint32_t)(((current - AKK_MIN) / (AKK_MAX - AKK_MIN)) * 100.0f + 0.5f);
+        percent_cur = (uint32_t)(((voltage - AKK_MIN) / (AKK_MAX - AKK_MIN)) * 100.0f + 0.5f);
 
         if (percent_old != percent_cur)
         {
