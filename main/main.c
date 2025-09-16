@@ -31,6 +31,7 @@ static void main_task(void *p)
     lv_arc_set_bg_angles(arc, 0, 250);
     lv_arc_set_angles(arc, 0, 250);
     lv_arc_set_range(arc, 0, 100);
+    lv_arc_set_value(arc, 0);
     lv_obj_remove_style(arc, NULL, LV_PART_KNOB);
     lv_obj_set_style_arc_width(arc, 50, LV_PART_INDICATOR);
     lv_obj_set_style_arc_width(arc, 50, LV_PART_MAIN);
@@ -39,11 +40,13 @@ static void main_task(void *p)
 
     lv_obj_t *label = lv_label_create(screen);
     lv_obj_set_style_text_font(label, &lv_font_montserrat_70_num, LV_PART_MAIN);
+    lv_label_set_text(label, "0");
     lv_obj_center(label);
 
     lv_obj_t *label_v = lv_label_create(screen);
     lv_obj_set_style_text_color(label_v, lv_palette_main(LV_PALETTE_RED), LV_PART_MAIN);
     lv_obj_set_style_text_font(label_v, &lv_font_montserrat_30, LV_PART_MAIN);
+    lv_label_set_text(label_v, "0.0 V");
     lv_obj_align(label_v, LV_ALIGN_BOTTOM_MID, 0, -40);
 
     lvgl_port_unlock();
